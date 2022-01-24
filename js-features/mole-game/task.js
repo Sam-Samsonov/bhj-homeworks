@@ -1,22 +1,26 @@
 'use strict';
 
-let getHole = index => document.getElementById(`hole${index}`)
+const getHole = index => document.getElementById(`hole${index}`);
+const lose = document.getElementById('lost');
+const win = document.getElementById('dead');
+function gameOver(text) {
+  alert(text);
+  lose.textContent = 0;
+  win.textContent = 0;
+}
 
 for (let index = 1; index < 10; index++) {
   getHole(index).addEventListener('click', () => {
     if (getHole(index).className.includes('hole hole_has-mole')) {
-      document.getElementById('dead').textContent++;
+      win.textContent++;
     } else {
-      document.getElementById('lost').textContent++;
+      lose.textContent++;
     }
-    if (document.getElementById('dead').textContent == 10) {
-      alert('Вы выиграли!!!');
-      document.getElementById('lost').textContent = 0;
-      document.getElementById('dead').textContent = 0;
-    } if (document.getElementById('lost').textContent == 5) {
-      alert('Вы проиграли!!!');
-      document.getElementById('lost').textContent = 0;
-      document.getElementById('dead').textContent = 0;
+    if (win.textContent == 10) {
+      gameOver('Вы выиграли!!!');
+
+    } if (lose.textContent == 5) {
+      gameOver('Вы проиграли!!!');
     }
   })
 }

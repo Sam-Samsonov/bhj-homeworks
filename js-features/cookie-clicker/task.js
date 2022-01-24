@@ -1,8 +1,8 @@
 'use strict';
 
-let gif = document.getElementById('cookie');
-let clicker = document.getElementById('clicker__counter');
-let speed = document.getElementById('clicker__speed');
+const gif = document.getElementById('cookie');
+const clicker = document.getElementById('clicker__counter');
+const speed = document.getElementById('clicker__speed');
 let firstClick = 0;
 
 gif.onclick = function() {
@@ -21,5 +21,5 @@ gif.onclick = function() {
     firstClick = new Date();
   }
 
-  speed.textContent = (((lastClick - firstClick) / 1000) / clicker.textContent).toFixed(3);
+  speed.textContent = (clicker.textContent / ((lastClick - firstClick) / 1000)).toFixed(3);
 }

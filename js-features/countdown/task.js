@@ -10,17 +10,17 @@ let counterInt = setInterval(() => {
   }
 }, 1000);*/
 
-let counter = document.getElementById('timer');
-let counterInt = setInterval(() => {
+const counter = document.getElementById('timer');
+const counterInt = setInterval(() => {
 
-  counter.textContent = new Date(new Date(2020, 1, 1, 23, 59, 59) - new Date()).toLocaleTimeString('ru-Ru', {
+  counter.textContent = new Date(new Date(2020, 1, 1, 15, 52, 59) - new Date()).toLocaleTimeString('ru-Ru', {
   hour: '2-digit',
   minute: '2-digit',
   second: '2-digit',
 });
 if (counter.textContent == '00:00:00') {
   clearInterval(counterInt);
-  let hint = document.getElementById('hint');
+  const hint = document.getElementById('hint');
   hint.href = 'http://_hello.kitty';
   hint.click();
   //  alert('Вы победили в конкурсе');
