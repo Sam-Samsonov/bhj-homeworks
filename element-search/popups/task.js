@@ -1,15 +1,18 @@
 'use strict'
 
-document.getElementById("modal_success").className = 'modal modal_active';
+const mainMod = document.getElementById('modal_main');
+const btnShow = document.getElementsByClassName('show-success')[0];
+const sucMod = document.getElementById('modal_success')
 
-let cross = Array.from(document.getElementsByClassName('modal__close'))
-function closeMod() {
-  document.querySelector('.modal_active').className = 'modal'
+mainMod.className = 'modal modal_active';
+
+btnShow.onclick = () => {
+  mainMod.className = 'modal';
+  sucMod.className = 'modal modal_active';
+  document.querySelector('.modal_active .modal__content .modal__close');
 }
 
-cross[cross.findIndex(() => {
-
-  }
-)].onclick = () => {
-  closeMod();
+document.querySelector('.modal_active .modal__content .modal__close').onclick = () => {
+  const actMod = document.getElementsByClassName('modal_active')[0];
+  actMod.className = 'modal';
 }
