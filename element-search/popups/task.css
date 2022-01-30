@@ -18,10 +18,6 @@ body {
   display: flex;
 }
 
-.modal_active div .modal__close {
-  cursor: pointer;
-}
-
 .modal__close_times {
   position: absolute;
   right: 5px;
