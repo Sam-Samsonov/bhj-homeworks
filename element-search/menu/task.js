@@ -1,18 +1,20 @@
 'use strict';
 
-const menuLink = Array.from(document.getElementsByClassName('menu__link'));
+const menu = Array.from(document.getElementsByClassName('menu menu_sub'));
 
-
-menuLink.forEach(link => link.onclick = function() {
-  if ((this.closest('li').querySelector('.menu_sub')) && (document.querySelector('.menu_active'))) {
-    document.querySelector('.menu_active').className = 'menu menu_sub';
-    this.closest('li').querySelector('.menu_sub').className = 'menu menu_sub menu_active';
-    return false;
-  } else if (this.closest('li').querySelector('.menu_sub')) {
-    this.closest('li').querySelector('.menu_sub').classList.add('menu_active');
-    return false;
-  } else if (this.closest('li').querySelector('.menu_active')) {
-    this.closest('li').querySelector('.menu_active').classList.remove('menu_active');
+menu.forEach(el => el.closest('li').querySelector('.menu__link').onclick = function() {
+  const submenu = this.closest('li').querySelector('.menu_sub');
+  if (menu.find(elem => elem.classList.contains('menu_active'))) {
+    if (menu.find(elem => elem.classList.contains('menu_active')) === submenu) {
+      menu.find(elem => elem.classList.remove('menu_active'));
+      return false;
+    } else {
+      menu.find(elem => elem.classList.remove('menu_active'));
+      submenu.classList.add('menu_active');
+      return false;
+    }
+  } else {
+    submenu.classList.add('menu_active');
     return false;
   }
 })
