@@ -1,6 +1,46 @@
 'use strict';
 
 const arrSli = Array.from(document.getElementsByClassName('slider__item'));
+const arrDot = Array.from(document.getElementsByClassName('slider__dot'));
+const arrowPrev = document.getElementsByClassName('slider__arrow_prev')[0];
+const arrowNext = document.getElementsByClassName('slider__arrow_next')[0];
+let ind = arrSli.findIndex(() => document.querySelector('.slider__item_active'));
+arrDot[ind].classList.add("slider__dot_active");
+
+function actNext(newInd) {
+  arrSli[ind].classList.remove('slider__item_active')
+  arrDot[ind].classList.remove('slider__dot_active')
+  arrSli[newInd].classList.add('slider__item_active');
+  arrDot[newInd].classList.add('slider__dot_active');
+  ind = newInd;
+}
+
+arrowNext.onclick = function() {
+  let newInd = ind;
+  if (ind === arrSli.length - 1) {
+      newInd = 0;
+  } else {
+      newInd += 1;
+  }
+  actNext(newInd);
+}
+
+arrowPrev.onclick = function() {
+  let newInd = ind;
+  if (ind === 0) {
+      newInd = arrSli.length - 1;
+  } else {
+      newInd -= 1;
+  }
+  actNext(newInd);
+}
+
+arrDot.forEach(el => el.onclick = function() {
+  let newInd = arrDot.indexOf(this);
+  actNext(newInd);
+})
+
+/*const arrSli = Array.from(document.getElementsByClassName('slider__item'));
 const arrDot = Array.from(document.getElementsByClassName('slider__dot'))
 const arrowPrev = document.getElementsByClassName('slider__arrow_prev')[0];
 const arrowNext = document.getElementsByClassName('slider__arrow_next')[0];
@@ -9,7 +49,7 @@ let indS = 0;
 arrDot[indS].classList.add("slider__dot_active");
 
 function actNext(arg) {
-  arrSli.find(el => {
+  arrSli.forEach(el => {
     if (el.classList.contains('slider__item_active')) {
       el.classList.remove('slider__item_active');
     }
@@ -41,13 +81,9 @@ arrowPrev.onclick = function() {
   actNext(indS);
 }
 
-// Попытка задать через forEach
-/*arrDot.forEach((el, i) => el[i].onclick = function() {
-  return actNext(i);
-})*/
-
 for (let i = 0; i < arrDot.length; i++) {
   arrDot[i].onclick = function() {
-    actNext(i);
+    indS = i;
+    actNext(indS);
   }
-}
+}*/
