@@ -17,6 +17,16 @@ class Game {
   }
 
   registerEvents() {
+    function handler(evt) {
+      let simNow = document.querySelector('.symbol_current');
+      console.log(evt.key);
+      console.log(simNow.textContent)
+      if (evt.key == simNow.textContent) {
+        this.success();
+        }
+      }
+
+    window.addEventListener('keyup', handler);
     /*
       TODO:
       Написать обработчик события, который откликается
